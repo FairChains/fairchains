@@ -6,12 +6,22 @@ sudo chown <insertYourUserName>.<insertYourUserName> /opt/faircoin
 ```
 ## 1 Compile the FairCoin wallet
 This document assumes that you have all the required development packages already installed on your system.
+
+if you are using Ubuntu (tested with both 16.04 and 18.04), then an easy way to install all required dependencies and avoid using the `--with-incompatible-bdb` parameter in `configure` script is to first add bitcoin's PPA and then install sll required dependencies as follows:
+
+````
+sudo add-apt-repository ppa:bitcoin/bitcoin
+sudo apt update 
+sudo apt install automake libtool build-essential libtool autotools-dev autoconf pkg-config libssl-dev libboost-all-dev libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler libqrencode-dev autoconf openssl libssl-dev libevent-dev libminiupnpc-dev libzmq3-dev qtchooser libdb4.8-dev libdb4.8++-dev
+````
+after that you can proceed as usual: 
+
 ```
 cd /opt/faircoin
 git clone https://github.com/faircoin/faircoin.git
 cd faircoin
 ./autogen.sh
-./configure --disable-tests --disable-bench --with-incompatible-bdb --with-gui=qt4 --with-cvn
+./configure --disable-tests --disable-bench --with-incompatible-bdb --with-gui=qt5 --with-cvn
 make -j`nproc`
 ```
 
